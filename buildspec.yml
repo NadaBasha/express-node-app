@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region eu-west-2)
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t express-node-app-test:latest .
+      - docker tag express-node-app-test:latest 004443144924.dkr.ecr.eu-west-2.amazonaws.com/express-node-app-test:latest      
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 004443144924.dkr.ecr.eu-west-2.amazonaws.com/express-node-app-test:latest
