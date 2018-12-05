@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t express-node-app-test:latest .
+      - docker build -t express-node-app-test:latest -f node.dockerfile .
       - docker tag express-node-app-test:latest 004443144924.dkr.ecr.eu-west-2.amazonaws.com/express-node-app-test:latest      
   post_build:
     commands:
