@@ -19,7 +19,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:dev
-      - printf '[{"name":"express-node-app-test","imageUri":"%s"}]' $REPOSITORY_URI:dev > imagedefinitions.json
+      - printf '[{"name":"nodeexpresscontainercft","imageUri":"%s"}]' $REPOSITORY_URI:dev > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
