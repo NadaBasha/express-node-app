@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region eu-west-2)
-      - REPOSITORY_URI=004443144924.dkr.ecr.eu-west-2.amazonaws.com/express-node-app-test
+      - REPOSITORY_URI=004443144924.dkr.ecr.us-east-1.amazonaws.com/express-node-app-test
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
@@ -19,7 +19,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:dev
-      - printf '[{"name":"nodeexpresscontainercft","imageUri":"%s"}]' $REPOSITORY_URI:dev > imagedefinitions.json
+      - printf '[{"name":"ip360-api-express-node-app-dev","imageUri":"%s"}]' $REPOSITORY_URI:dev > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
